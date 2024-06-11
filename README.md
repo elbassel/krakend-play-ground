@@ -4,24 +4,20 @@
 This project is a playground for exploring and understanding the capabilities of [KrakenD](https://www.krakend.io/), the ultra performant API Gateway with middlewares.
 
 ## Features
-
-- **Aggregation**: This project demonstrates how to aggregate responses from multiple backend services into a single response.
-- **Basic Transformation**: It shows how to perform basic transformations such as filtering and mapping on the responses from backend services.
+- **Routing**: It demonstrates how to route requests to different backend services based on the request path.
 - **Grouping**: It illustrates how to group responses under specific fields.
 - **Rate Limiting**: It implements rate limiting to limit the number of requests a client can make to the server in a given amount of time.
 - **JWT Validation**: It uses the `github.com/devopsfaith/krakend-jose/validator` middleware to validate JWT tokens.
 
 ## Project Structure
 
-- `apps/auth/server.js`: This is the authentication server that generates JWT tokens and retrieve.
+- `apps/auth/server.js`: This is the authentication service that generates JWT tokens and retrieve.
 - `apps/products/server.js`: This is the products service that serves the products data.
 - `config/krakend.json`: This is the configuration file for the KrakenD API Gateway.
 
 ## Setup and Running
 
-1. Install the dependencies: `npm install`
-2. Start the authentication server: `node apps/auth/server.js`
-3. Start the KrakenD API Gateway with the provided configuration: `krakend run -c config/krakend.json`
+- Start the KrakenD API Gateway with the provided configuration: `docker-compose build && docker-compose up`
 
 ## API Endpoints
 
