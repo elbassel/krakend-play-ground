@@ -1,0 +1,53 @@
+{
+  "$schema": "https://www.krakend.io/schema/v3.json",
+  "version": 3,
+  "name": "KrakenD Enterprise API Gateway",
+  "port": 8080,
+  "host": ["http://fake_api:8080"],
+  "timeout": "3000ms",
+  "cache_ttl": "300s",
+  "endpoints": [
+    {
+      "@comment": "Feature: Aggregation + Basic transformation (filtering & mapping) + grouping",
+      "endpoint": "/products",
+      "backend": [
+        {
+          "host": ["http://products:3001"],
+          "url_pattern": "/products"
+        }
+      ],
+      "extra_config": {
+        "github.com/devopsfaith/krakend-jose/validator": {
+          "alg": "HS256",
+          "jwk_url": "http://auth:3000/api/keys.json",
+          "disable_jwk_security": true,
+          "audience": ["your_audience"],
+          "issuer": "your_issuer"
+        },
+        "github.com/devopsfaith/krakend-ratelimit/juju/proxy": {
+          "maxRate": 1000,
+          "clientMaxRate": 20
+        }
+      }
+    },
+    {
+      "@comment": "Feature: Aggregation + Basic transformation (filtering & mapping) + grouping",
+      "endpoint": "/api/profile",
+      "backend": [
+        {
+          "host": ["http://auth:3000"],
+          "url_pattern": "/api/profile"
+        }
+      ],
+      "extra_config": {
+        "github.com/devopsfaith/krakend-jose/validator": {
+          "alg": "HS256",
+          "jwk_url": "http://auth:3000/api/keys.json",
+          "disable_jwk_security": true,
+          "audience": ["your_audience"],
+          "issuer": "your_issuer"
+        }
+      }
+    }
+  ]
+}
