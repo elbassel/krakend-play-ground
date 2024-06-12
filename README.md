@@ -22,7 +22,7 @@ This project is a playground for exploring and understanding the capabilities of
 ## API Endpoints
 
 - **GET http://localhost:8080/__health**: This endpoint checks the health of the API Gateway.
-- **GET http://localhost:8080/api/tokens**: This endpoint generates a JWT token.
+- **POST http://localhost:8080/api/tokens**: This endpoint generates a JWT token.
 - The following endpoints require a JWT token in the `Authorization` header as `Bearer <token>`:
   - **GET http://localhost:8080/api/profile**: This endpoint retrieves the user profile.
   - **GET http://localhost:8080/products**: This endpoint retrieves the products.
